@@ -6,6 +6,8 @@ import {
   Delete,
   Body,
   Param,
+  Req,
+  Res,
 } from '@nestjs/common';
 // *IMPORTAMOS EL DTO
 import { CreateTaskDto } from './dto/create-task.dto';
@@ -13,6 +15,7 @@ import { CreateTaskDto } from './dto/create-task.dto';
 import { Request, Response } from 'express';
 @Controller('tasks')
 export class TasksController {
+  // ?------ SYNTAX DE NEST------------
   // *GET
   // !EL @Get ES UN DECORADOR
   @Get()
@@ -88,4 +91,9 @@ export class TasksController {
     return `Deleting a task number: ${id}`;
   }
   // *----------------------------------------------------------------
+  // ?------ SYNTAX OF EXPRESS------------
+  @Get('express')
+  getTasksExpress(@Req() req, @Res() res): Response {
+    return res.send('Desde Express');
+  }
 }
