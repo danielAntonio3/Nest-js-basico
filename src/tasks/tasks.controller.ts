@@ -1,7 +1,19 @@
-import { Controller, Get, Post, Put, Delete, Body } from '@nestjs/common';
-
+import {
+  Controller,
+  Get,
+  Post,
+  Put,
+  Delete,
+  Body,
+  Param,
+} from '@nestjs/common';
+// *IMPORTAMOS EL DTO
+import { CreateTaskDto } from './dto/create-task.dto';
+// *IMPORTANDO EXPRESS (no es necesario instalas ya esta incluido)
+import { Request, Response } from 'express';
 @Controller('tasks')
 export class TasksController {
+  // *GET
   // !EL @Get ES UN DECORADOR
   @Get()
   getTask(): string {
@@ -16,6 +28,14 @@ export class TasksController {
   getTasks(): string {
     return 'Desde tareas/test';
   }
+  @Get('json')
+  getTasksJson(): { variant: string } {
+    return {
+      variant: 'Hello',
+    };
+  }
+  // *----------------------------------------------------------------
+  // *POST
   /*
   @Post()
   createTask(): string {
@@ -23,16 +43,49 @@ export class TasksController {
   }*/
   // !LA FOMRMA DE LEER LOS DATOS DE UNA PETICION DE TIPO POST
   @Post()
-  createTask(@Body() task): string {
+  createTask(@Body() task: CreateTaskDto): string {
     console.log(task);
     return 'Creating a task';
   }
+  // !COMO UTILIZAR LOS METODOS CON PARAMETROS
+  @Post('post/:id')
+  createTaskPost(@Param('id') id): string {
+    console.log(id);
+    return `Creating a task number ${id}`;
+  }
+  // *----------------------------------------------------------------
+  // *PUT
   @Put()
   updateTask(): string {
     return 'Updating a task';
   }
+  // !COMO UTILIZAR LOS METODOS CON PARAMETROS
+  @Put('update/:id')
+  updateTaskPut(@Param('id') id): string {
+    console.log(id);
+    return `Update a task number ${id}`;
+  }
+  // !UTILIZANDO PARAMETROS Y DATOS
+  @Put('updateBody/:id')
+  updateTaskBody(@Body() task: CreateTaskDto, @Param('id') id: number): string {
+    console.log(id);
+    console.log(task);
+    return `Update a task number ${id} and 
+          Title: ${task.title} 
+          Description: ${task.description} 
+          Done: ${task.done}`;
+  }
+  // *----------------------------------------------------------------
+  // *DELETE
   @Delete()
   deleteTask(): string {
     return 'Deleting a task';
   }
+  // !COMO UTILIZAR LOS METODOS CON PARAMETROS
+  @Delete('parameters/:id')
+  deleteTaskParameters(@Param('id') id): string {
+    console.log(id);
+    return `Deleting a task number: ${id}`;
+  }
+  // *----------------------------------------------------------------
 }
