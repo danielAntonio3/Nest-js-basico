@@ -7,7 +7,12 @@ import { TasksModule } from './tasks/tasks.module';
 // !IMPORTAMOS MONGODB
 import { MongooseModule } from '@nestjs/mongoose';
 @Module({
-  imports: [TasksModule,MongooseModule.forRoot('mongodb://localhost/dbnest')],
+  imports: [
+    TasksModule,
+    MongooseModule.forRoot(
+      'mongodb+srv://danny:12345678a@cluster0.medst.mongodb.net/dbnest?retryWrites=true&w=majority',
+    ),
+  ],
   controllers: [AppController, TasksController],
   providers: [AppService, TasksService],
 })

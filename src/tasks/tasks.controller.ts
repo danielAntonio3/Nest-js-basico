@@ -9,12 +9,16 @@ import {
   Req,
   Res,
 } from '@nestjs/common';
+
 // *IMPORTAMOS EL DTO
 import { CreateTaskDto } from './dto/create-task.dto';
+
 // *IMPORTANDO EXPRESS (no es necesario instalas ya esta incluido)
 import { Request, Response } from 'express';
+
 // *IMPORTANDO LOS SERVICE
 import { TasksService } from './tasks.service';
+
 // *IMPORTANDO LA INTEFCAES
 import { Task } from './interfaces/Task';
 
@@ -22,14 +26,24 @@ import { Task } from './interfaces/Task';
 export class TasksController {
   // !INSTANCIAR EL SERVICE
   constructor(private TasksService: TasksService) {}
-  @Get('service')
+  // !ESTAS SON TAREAS QUE OCUPAMOS CUANDO NO SE TRABAJA CON MONGO SON DE EJEMPLO
+  /*@Get('service')
+  getTaskUSer(): Promise<Task[]> {
+    return this.TasksService.getTasks();
+  }
+  @Get('taskId/:id')
+  getTaskUseId(@Param('id') id: string): Promise<Task> {
+    return this.TasksService.getTask(id);
+  }*/
+  // !ESTAS SON TAREAS QUE OCUPAMOS CUANDO NO SE TRABAJA CON MONGO SON DE EJEMPLO
+  /*@Get('service')
   getTaskUse(): Task[] {
     return this.TasksService.getTasks();
   }
   @Get('taskId/:id')
   getTaskUseId(@Param('id') id: string): Task {
     return this.TasksService.getTask(parseInt(id));
-  }
+  }*/
   // ?------ SYNTAX DE NEST------------------------------------------
 
   // *GET
