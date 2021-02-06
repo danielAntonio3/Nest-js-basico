@@ -13,9 +13,25 @@ import {
 import { CreateTaskDto } from './dto/create-task.dto';
 // *IMPORTANDO EXPRESS (no es necesario instalas ya esta incluido)
 import { Request, Response } from 'express';
+// *IMPORTANDO LOS SERVICE
+import { TasksService } from './tasks.service';
+// *IMPORTANDO LA INTEFCAES
+import { Task } from './interfaces/Task';
+
 @Controller('tasks')
 export class TasksController {
+  // !INSTANCIAR EL SERVICE
+  constructor(private TasksService: TasksService) {}
+  @Get('service')
+  getTaskUse(): Task[] {
+    return this.TasksService.getTasks();
+  }
+  @Get('taskId/:id')
+  getTaskUseId(@Param('id') id: string): Task {
+    return this.TasksService.getTask(parseInt(id));
+  }
   // ?------ SYNTAX DE NEST------------------------------------------
+
   // *GET
   // !EL @Get ES UN DECORADOR
   @Get()
