@@ -27,23 +27,14 @@ export class TasksController {
   // !INSTANCIAR EL SERVICE
   constructor(private TasksService: TasksService) {}
   // !ESTAS SON TAREAS QUE OCUPAMOS CUANDO NO SE TRABAJA CON MONGO SON DE EJEMPLO
-  /*@Get('service')
-  getTaskUSer(): Promise<Task[]> {
-    return this.TasksService.getTasks();
-  }
-  @Get('taskId/:id')
-  getTaskUseId(@Param('id') id: string): Promise<Task> {
-    return this.TasksService.getTask(id);
-  }*/
-  // !ESTAS SON TAREAS QUE OCUPAMOS CUANDO NO SE TRABAJA CON MONGO SON DE EJEMPLO
-  /*@Get('service')
+  @Get('service')
   getTaskUse(): Task[] {
     return this.TasksService.getTasks();
   }
   @Get('taskId/:id')
   getTaskUseId(@Param('id') id: string): Task {
     return this.TasksService.getTask(parseInt(id));
-  }*/
+  }
   // ?------ SYNTAX DE NEST------------------------------------------
 
   // *GET

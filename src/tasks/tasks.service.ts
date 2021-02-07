@@ -3,28 +3,9 @@ import { Injectable } from '@nestjs/common';
 //* INTERFACES
 import { Task } from './interfaces/Task';
 
-//* UN ELEMENTO DE NEST/MONGOOSE
-import { InjectModel } from '@nestjs/mongoose';
-
-//* UN ELEMENTO DE MONGOOSE
-import { Model } from 'mongoose';
-
 @Injectable()
 export class TasksService {
-  // ?USANDO MONGODB
-  constructor(@InjectModel('task') private taskModel: Model<Task>) {}
-
-  /*async getTasks() {
-    return await this.taskModel.find();
-  }*/
-
-  /*
-  async getTask(id: string) {
-    return await this.taskModel.findById(id);
-  }*/
-
   // ?SI MULACION DE BASE DE DATOS
-  /*
   tasks: Task[] = [
     {
       id: 1,
@@ -53,6 +34,5 @@ export class TasksService {
   // ?SOLO REGRESA UNA TAREA
   getTask(id: number): Task {
     return this.tasks.find((task) => task.id === id);
-  }*/
-
+  }
 }
